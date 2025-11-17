@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: swiggi-clone-deployment
+  namespace: swiggi-clone
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: swiggi-clone
+  template:
+    metadata:
+      labels:
+        app: swiggi-clone
+    spec:
+      containers:
+        - name: swiggi-clone
+          image: daxdobariya/swiggi_clone
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "300m"
+              memory: "512Mi"
